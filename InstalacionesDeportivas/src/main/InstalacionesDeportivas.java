@@ -1,3 +1,4 @@
+package main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -5,15 +6,14 @@ import java.util.HashMap;
 import pii.Main.Monitor;
 import pii.Main.OpFicheros;
 import pii.Main.OpInstalacionesDeportivas;
-import pii.Main.Persona;
 import pii.Main.Usuario;
 
 public class InstalacionesDeportivas {
 
 	static Integer id;
-
+	
 	public static void main(String[] args) {
-
+		
 		String fileEjecucion = "ejecucion.txt";
 		String filePersona = "avisos.txt";
 		String fileAvisos = "avisos.txt";
@@ -21,6 +21,7 @@ public class InstalacionesDeportivas {
 
 		// ArrayList donde almacenamos las líneas de comandos
 		ArrayList<String> lineas = new ArrayList<String>();
+		ArrayList<String> avisos = new ArrayList<String>();
 		// HashMap<Integer, Persona> personas = new HashMap<Integer,Persona>();
 		HashMap<Integer, Usuario> usuarios = new HashMap<Integer, Usuario>();
 		HashMap<Integer, Monitor> monitores = new HashMap<Integer, Monitor>();
@@ -30,7 +31,7 @@ public class InstalacionesDeportivas {
 		for (String lineaPartir : lineas) {
 			System.out.println(lineaPartir + " *");
 
-			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores);
+			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores, avisos);
 			OpFicheros.escribirFichero("personas.txt", usuarios, monitores);
 		}
 	}
