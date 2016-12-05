@@ -14,7 +14,7 @@ public class InstalacionesDeportivas {
 	
 	
 	public static void main(String[] args) {
-		System.out.println("putaaaa");
+		System.out.println("putaaa");
 		String fileEjecucion = "ejecucion.txt";
 		String filePersona = "avisos.txt";
 		String fileAvisos = "avisos.txt";
