@@ -33,7 +33,7 @@ public class InstalacionesDeportivas {
 
 			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores);
 			OpFicheros.escribirFichero("personas.txt", usuarios, monitores);
-		}System.out.println(monitores.get(3));	}
+		}System.out.println(usuarios.get(4));	}
 
 	public static void asignarGrupo() {
 

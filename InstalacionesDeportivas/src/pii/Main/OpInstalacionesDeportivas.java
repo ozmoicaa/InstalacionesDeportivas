@@ -76,7 +76,7 @@ public class OpInstalacionesDeportivas {
 		} else {
 			id = id2;
 		}
-
+System.out.println("fuck");
 		if (partes[2].equalsIgnoreCase("monitor")) {
 
 			String perfil = partes[2];
@@ -125,9 +125,6 @@ public class OpInstalacionesDeportivas {
 			double saldo = Integer.parseInt(partes[7]);
 
 			Usuario usuario = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
-			// fechaNacimiento, fechaAlta, saldo)
-			// System.out.println(monitor.getHorasSemanales());
-			// monitores.put(monitor.getId(), monitor);
 		}
 		System.out.println("a");
 
