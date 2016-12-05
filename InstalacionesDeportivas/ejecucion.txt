@@ -1,0 +1,16 @@
+***************************************************************************
+*MONITOR:  InsertaPersona monitor nombre apellidos fecha1 horasAsig
+*Usuario: InsertaPersona usuario nombre apellidos fecha1 fecha2 saldo
+****************************************************************************
+*     Resultados:
+*	1 - Comando incorrecto 
+*	2 - Numero de argumentos incorrecto
+*     3 - Fecha incorrecta
+* 	4 - Numero de horas incorrecto2197
+*	5 - OK
+
+
+1 InsertaPersona monitor  "J Antonio"  "Fernandez" 10/02/1972  20
+2 InsertaPersona monitor  "Alberto"  "Estevez" 30/01/2016  5020
+3 InsertaPersona monitor "Moises" "Carral" 21/09/1997 25
+4 InsertaPersona usuario "Moises" "Carral" 21/09/1997 05/12/2016 500 
