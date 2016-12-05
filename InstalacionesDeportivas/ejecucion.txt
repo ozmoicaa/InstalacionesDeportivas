@@ -11,6 +11,8 @@
 
 
 1 InsertaPersona monitor  "J Antonio"  "Fernandez" 10/02/1972  20
-*2 InsertaPersona monitor  "Alberto"  "Estevez" 30/01/2016  5020
-*3 InsertaPersona monitor "Moises" "Carral" 21/09/1997 25
-4 InsertaPersona usuario "Moises" "Carral" 21/09/1997 05/12/2016 500 
+2 InsertaPersona usuario "Moises" "Carral" 21/09/1997 05/12/2016 500 
+3 InsertaPersona monitor  "Alberto"  "Estevez" 30/01/2016  5020
+4 InsertaPersona monitor "Moises" "Carral" 21/09/1997 25
+5 InsertaPersona usuario "Moises" "Carral" 21/09/1997 05/12/2016 500 
+6 InsertaPersona usuario "Moises" "Carral" 21/09/1997 05/12/2016 500 

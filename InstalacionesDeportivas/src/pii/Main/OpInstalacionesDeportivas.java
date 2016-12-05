@@ -1,5 +1,4 @@
 package pii.Main;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -8,7 +7,7 @@ import java.util.HashMap;
 public class OpInstalacionesDeportivas {
 
 	public static void comprobarOperacion(String linea, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos) {
 
 		String[] lineaPartida = linea.split("\\s");
 		String instruccion = lineaPartida[1];
@@ -28,7 +27,7 @@ public class OpInstalacionesDeportivas {
 			System.arraycopy(partes1, 1, partes, partes3.length, 2);
 			System.arraycopy(partes2, 0, partes, partes3.length + 2, partes2.length);
 
-			insertaPersona(partes, usuarios, monitores);
+			insertaPersona(partes, usuarios, monitores, avisos);
 			break;
 
 		case "ASIGNARMONITORGRUPO":
@@ -45,7 +44,7 @@ public class OpInstalacionesDeportivas {
 	}
 
 	public static void insertaPersona(String[] partes, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos) {
 
 		// LEO EL FICHERO PERSONAS
 		// OpFicheros.leerFichero("personas.txt", lineas)
@@ -120,8 +119,20 @@ public class OpInstalacionesDeportivas {
 			int añoIngreso = Integer.parseInt(fechaIngreso[2]);
 			Calendar fecha2 = new GregorianCalendar(año, mes, dia);
 			// SALDO DEL USUARIO
+			
+			partes[7]=partes[7].replace(".", ",");
 			double saldo = Integer.parseInt(partes[7]);
-
+			
+			if(!(Validacion.esSaldo(saldo))){
+			avisos.add("Saldo incorrecto");
+			}
+			
+			if(!(Validacion.esFecha(fecha2, fecha1))){
+				avisos.add("Fecha de ingreso incorrecta");
+			}
+			
+			
+			
 			Usuario usuario = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
 			usuarios.put(id, usuario);
 		}
