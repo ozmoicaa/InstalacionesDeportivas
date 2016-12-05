@@ -61,12 +61,12 @@ public class OpInstalacionesDeportivas {
 
 		// RECORREMOS LOS MONITORES EN BUSCA DE ALGÚN ID LIBRE
 		while (monitores.get(id1) != null)
-			++id1;
+			id1++;
 
 		// RECORREMOS LOS USUARIOS EN BUSCA DE ALGÚN ID LIBRE
 		while (usuarios.get(id2) != null)
-			++id2;
-		id = id1;
+			id2++;
+		
 		System.out.println(id1);
 		System.out.println(id2);
 		// ASIGNAMOS EL ID LIBRE MÁS BAJA ENCONTRADO ENTRE LOS USUARIOS
@@ -76,7 +76,7 @@ public class OpInstalacionesDeportivas {
 		} else {
 			id = id2;
 		}
-System.out.println("fuck");
+
 		if (partes[2].equalsIgnoreCase("monitor")) {
 
 			String perfil = partes[2];
@@ -101,9 +101,7 @@ System.out.println("fuck");
 		// SI ES USUARIO
 
 		if (partes[2].equalsIgnoreCase("usuario")) {
-			for (String string : partes) {
-				System.out.println(string);
-			}
+			
 			String perfil = partes[2];
 			String nombre = partes[3].replace("\"", " ").trim();
 			String apellidos = partes[4].replace("\"", " ").trim();
@@ -125,6 +123,7 @@ System.out.println("fuck");
 			double saldo = Integer.parseInt(partes[7]);
 
 			Usuario usuario = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
+			usuarios.put(id, usuario);
 		}
 		System.out.println("a");
 

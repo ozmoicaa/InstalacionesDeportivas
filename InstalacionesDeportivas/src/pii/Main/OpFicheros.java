@@ -75,8 +75,11 @@ public class OpFicheros {
 				fileWriter.write((usuarios.get(key)).getPerfil() + "\n");
 				fileWriter.write((usuarios.get(key)).getNombre() + "\n");
 				fileWriter.write((usuarios.get(key)).getApellidos() + "\n");
-				Date date = usuarios.get(key).getFechaNacimiento().getTime();
-				fileWriter.write(formato.format(date) + "\n");
+				Date date1 = usuarios.get(key).getFechaNacimiento().getTime();
+				fileWriter.write(formato.format(date1) + "\n");
+				Date date2 = usuarios.get(key).getFechaAlta().getTime();
+				fileWriter.write(formato.format(date2) + "\n");
+				
 				
 
 			}

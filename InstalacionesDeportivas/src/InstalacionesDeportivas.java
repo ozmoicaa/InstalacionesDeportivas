@@ -11,10 +11,9 @@ import pii.Main.Usuario;
 public class InstalacionesDeportivas {
 
 	static Integer id;
-	
-	
+
 	public static void main(String[] args) {
-		
+
 		String fileEjecucion = "ejecucion.txt";
 		String filePersona = "avisos.txt";
 		String fileAvisos = "avisos.txt";
@@ -33,7 +32,8 @@ public class InstalacionesDeportivas {
 
 			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores);
 			OpFicheros.escribirFichero("personas.txt", usuarios, monitores);
-		}System.out.println(usuarios.get(4));	}
+		}
+	}
 
 	public static void asignarGrupo() {
 
