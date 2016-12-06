@@ -55,7 +55,7 @@ public class OpInstalacionesDeportivas {
 		// DISPONIBLES
 		// EN MONITORES Y EN USUARIOS
 		
-		int id = 0;
+		int id = 1;
 
 		// RECORREMOS LOS MONITORES EN BUSCA DE ALGÚN ID LIBRE
 		while (personas.get(id) != null)
@@ -100,11 +100,11 @@ public class OpInstalacionesDeportivas {
 			Calendar fecha1 = new GregorianCalendar(año, mes, dia);
 
 			// GENERO LOS ELEMENTOS DE LA FECHA DE INGRESO
-			String[] fechaIngreso = partes[5].split("/");
+			String[] fechaIngreso = partes[6].split("/");
 			int diaIngreso = Integer.parseInt(fechaIngreso[0]);
 			int mesIngreso = Integer.parseInt(fechaIngreso[1]) - 1;
 			int añoIngreso = Integer.parseInt(fechaIngreso[2]);
-			Calendar fecha2 = new GregorianCalendar(año, mes, dia);
+			Calendar fecha2 = new GregorianCalendar(añoIngreso, mesIngreso, diaIngreso);
 			// SALDO DEL USUARIO
 			
 			partes[7]=partes[7].replace(".", ",");
@@ -114,9 +114,9 @@ public class OpInstalacionesDeportivas {
 			avisos.add("Saldo incorrecto");
 			}
 			
-			if(!(Validacion.esFecha(fecha2, fecha1))){
+			/*if(!(Validacion.esFecha(fecha2, fecha1))){
 				avisos.add("Fecha de ingreso incorrecta");
-			}
+			}*/
 			
 			
 			Persona persona = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);

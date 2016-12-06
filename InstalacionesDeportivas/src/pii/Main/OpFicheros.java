@@ -79,6 +79,7 @@ public class OpFicheros {
 				fileWriter.write(formato.format(date1) + "\n");
 				Date date2 = usuarios.get(key).getFechaAlta().getTime();
 				fileWriter.write(formato.format(date2) + "\n");
+				fileWriter.write("\n");
 				
 				
 

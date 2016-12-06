@@ -6,6 +6,7 @@ import java.util.HashMap;
 import pii.Main.Monitor;
 import pii.Main.OpFicheros;
 import pii.Main.OpInstalacionesDeportivas;
+import pii.Main.Persona;
 import pii.Main.Usuario;
 
 public class InstalacionesDeportivas {
