@@ -3,6 +3,7 @@ package pii.Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,10 +31,10 @@ public class OpFicheros {
 		return lineas;
 	}
 	
-	public static ArrayList<String> leerFicheroPersonas(String archivo, ArrayList<String> lineas) {
+	public static ArrayList<String> leerFicheroPersonas(ArrayList<String> lineas) {
 
 		try {
-			FileReader fileReader = new FileReader(archivo);
+			FileReader fileReader = new FileReader("personas");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String line = "";
 			while ((line = bufferedReader.readLine()) != null) {
@@ -55,6 +56,7 @@ public class OpFicheros {
 		try {
 			FileWriter fileWriter = new FileWriter(docSalida);
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			DecimalFormat decimales = new DecimalFormat("0.00");
 
 			for (Integer key : monitores.keySet()) {
 
@@ -79,7 +81,8 @@ public class OpFicheros {
 				fileWriter.write(formato.format(date1) + "\n");
 				Date date2 = usuarios.get(key).getFechaAlta().getTime();
 				fileWriter.write(formato.format(date2) + "\n");
-				fileWriter.write("\n");
+				fileWriter.write(decimales.format(usuarios.get(key).getSaldo()) + "\n");
+				fileWriter.write("*\n");
 				
 				
 
