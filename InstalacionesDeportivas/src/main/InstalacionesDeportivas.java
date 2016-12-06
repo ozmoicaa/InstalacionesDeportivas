@@ -25,13 +25,14 @@ public class InstalacionesDeportivas {
 		// HashMap<Integer, Persona> personas = new HashMap<Integer,Persona>();
 		HashMap<Integer, Usuario> usuarios = new HashMap<Integer, Usuario>();
 		HashMap<Integer, Monitor> monitores = new HashMap<Integer, Monitor>();
+		HashMap<Integer, Persona> personas = new HashMap<Integer, Persona>();
 
 		// obtenemos las líneas del fichero de los comandos
 		lineas = OpFicheros.leerFichero(fileEjecucion, lineas);
 		for (String lineaPartir : lineas) {
 			System.out.println(lineaPartir + " *");
 
-			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores, avisos);
+			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores, avisos, personas);
 			OpFicheros.escribirFichero("personas.txt", usuarios, monitores);
 		}
 	}

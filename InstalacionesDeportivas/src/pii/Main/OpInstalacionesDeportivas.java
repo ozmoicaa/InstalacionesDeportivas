@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class OpInstalacionesDeportivas {
 
 	public static void comprobarOperacion(String linea, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos,HashMap<Integer, Persona> personas) {
 
 		String[] lineaPartida = linea.split("\\s");
 		String instruccion = lineaPartida[1];
@@ -27,7 +27,7 @@ public class OpInstalacionesDeportivas {
 			System.arraycopy(partes1, 1, partes, partes3.length, 2);
 			System.arraycopy(partes2, 0, partes, partes3.length + 2, partes2.length);
 
-			insertaPersona(partes, usuarios, monitores, avisos);
+			insertaPersona(partes, usuarios, monitores, avisos, personas);
 			break;
 
 		case "ASIGNARMONITORGRUPO":
@@ -44,7 +44,7 @@ public class OpInstalacionesDeportivas {
 	}
 
 	public static void insertaPersona(String[] partes, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos,HashMap<Integer, Persona> personas) {
 
 		// LEO EL FICHERO PERSONAS
 		// OpFicheros.leerFichero("personas.txt", lineas)
@@ -54,27 +54,12 @@ public class OpInstalacionesDeportivas {
 		// VARIABLES AUXILIARES EMPLEADAS PARA GUARDAR LOS IDS
 		// DISPONIBLES
 		// EN MONITORES Y EN USUARIOS
-		int id1 = 1;
-		int id2 = 1;
+		
 		int id = 0;
 
 		// RECORREMOS LOS MONITORES EN BUSCA DE ALGÚN ID LIBRE
-		while (monitores.get(id1) != null)
-			id1++;
-
-		// RECORREMOS LOS USUARIOS EN BUSCA DE ALGÚN ID LIBRE
-		while (usuarios.get(id2) != null)
-			id2++;
-		
-		System.out.println(id1);
-		System.out.println(id2);
-		// ASIGNAMOS EL ID LIBRE MÁS BAJA ENCONTRADO ENTRE LOS USUARIOS
-		// Y LOS MONITORES
-		if (id2 < id1 && usuarios.size() < monitores.size()) {
-			id = id1;
-		} else {
-			id = id2;
-		}
+		while (personas.get(id) != null)
+			id++;
 
 		if (partes[2].equalsIgnoreCase("monitor")) {
 
@@ -93,7 +78,9 @@ public class OpInstalacionesDeportivas {
 
 			// CREAMOS EL MONITOR Y LO METEMOS EN EL HASHMAP
 			Monitor monitor = new Monitor(nombre, apellidos, perfil, id, fecha1, horasAsignables);
+			Persona persona = new Monitor(nombre, apellidos, perfil, id, fecha1, horasAsignables);
 			monitores.put(monitor.getId(), monitor);
+			personas.put(persona.getId(), persona);
 
 		}
 
@@ -132,9 +119,10 @@ public class OpInstalacionesDeportivas {
 			}
 			
 			
-			
+			Persona persona = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
 			Usuario usuario = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
 			usuarios.put(id, usuario);
+			personas.put(persona.getId(), persona);
 		}
 		System.out.println("a");
 
