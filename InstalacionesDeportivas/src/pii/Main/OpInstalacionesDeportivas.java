@@ -1,4 +1,5 @@
 package pii.Main;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 public class OpInstalacionesDeportivas {
 
 	public static void comprobarOperacion(String linea, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos,HashMap<Integer, Persona> personas) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos, HashMap<Integer, Persona> personas) {
 
 		String[] lineaPartida = linea.split("\\s");
 		String instruccion = lineaPartida[1];
@@ -31,20 +32,21 @@ public class OpInstalacionesDeportivas {
 			break;
 
 		case "ASIGNARMONITORGRUPO":
-			System.out.println("Asignar monitor grupo");
-			//asignarMonitorGrupo(lineaPartida);
+
+			// asignarMonitorGrupo(lineaPartida);
 
 		case "ALTA":
 			System.out.println("Alta");
 			break;
 
 		default:
-			System.out.println("No existe el comando:" + lineaPartida[1]);
+			avisos.add("Comando incorrecto: " + "<" + lineaPartida[1] + ">");
+			break;
 		}
 	}
 
 	public static void insertaPersona(String[] partes, HashMap<Integer, Usuario> usuarios,
-			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos,HashMap<Integer, Persona> personas) {
+			HashMap<Integer, Monitor> monitores, ArrayList<String> avisos, HashMap<Integer, Persona> personas) {
 
 		// LEO EL FICHERO PERSONAS
 		// OpFicheros.leerFichero("personas.txt", lineas)
@@ -54,7 +56,7 @@ public class OpInstalacionesDeportivas {
 		// VARIABLES AUXILIARES EMPLEADAS PARA GUARDAR LOS IDS
 		// DISPONIBLES
 		// EN MONITORES Y EN USUARIOS
-		
+
 		int id = 1;
 
 		// RECORREMOS LOS MONITORES EN BUSCA DE ALGÚN ID LIBRE
@@ -76,6 +78,11 @@ public class OpInstalacionesDeportivas {
 
 			int horasAsignables = Integer.parseInt(partes[6]);
 
+			if (!(Validacion.esHora(horasAsignables))) {
+				avisos.add(partes[0] + " -- " + "IP" + " -- " + "Numero de horas incorrecto");
+				return;
+			}
+
 			// CREAMOS EL MONITOR Y LO METEMOS EN EL HASHMAP
 			Monitor monitor = new Monitor(nombre, apellidos, perfil, id, fecha1, horasAsignables);
 			Persona persona = new Monitor(nombre, apellidos, perfil, id, fecha1, horasAsignables);
@@ -87,7 +94,7 @@ public class OpInstalacionesDeportivas {
 		// SI ES USUARIO
 
 		if (partes[2].equalsIgnoreCase("usuario")) {
-			
+
 			String perfil = partes[2];
 			String nombre = partes[3].replace("\"", " ").trim();
 			String apellidos = partes[4].replace("\"", " ").trim();
@@ -106,25 +113,28 @@ public class OpInstalacionesDeportivas {
 			int añoIngreso = Integer.parseInt(fechaIngreso[2]);
 			Calendar fecha2 = new GregorianCalendar(añoIngreso, mesIngreso, diaIngreso);
 			// SALDO DEL USUARIO
-			
-			partes[7]=partes[7].replace(".", ",");
+
+			partes[7] = partes[7].replace(".", ",");
 			double saldo = Integer.parseInt(partes[7]);
-			
-			if(!(Validacion.esSaldo(saldo))){
-			avisos.add("Saldo incorrecto");
+
+			if (!(Validacion.esSaldo(saldo))) {
+				avisos.add(partes[0] + " -- " + "IP" + " -- " + "Saldo incorrecto");
+				return;
 			}
-			
-			/*if(!(Validacion.esFecha(fecha2, fecha1))){
+
+			if (!(Validacion.esFechaIngreso(fecha2))) {
+				avisos.add(partes[0] + " -- " + "IP" + " -- " + "Fecha de ingreso incorrecta");
+				return;
+			}
+
+			if (!(Validacion.esFecha(fecha2, fecha1))) {
 				avisos.add("Fecha de ingreso incorrecta");
-			}*/
-			
-			
+			}
+
 			Persona persona = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
 			Usuario usuario = new Usuario(nombre, apellidos, perfil, id, fecha1, fecha2, saldo);
 			usuarios.put(id, usuario);
 			personas.put(persona.getId(), persona);
 		}
-		System.out.println("a");
-
 	}
 }

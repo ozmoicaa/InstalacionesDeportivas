@@ -16,7 +16,7 @@ public class InstalacionesDeportivas {
 	public static void main(String[] args) {
 		
 		String fileEjecucion = "ejecucion.txt";
-		String filePersona = "avisos.txt";
+		String filePersona = "personas.txt";
 		String fileAvisos = "avisos.txt";
 		String fileActividades = "actividades.txt";
 
@@ -27,14 +27,16 @@ public class InstalacionesDeportivas {
 		HashMap<Integer, Usuario> usuarios = new HashMap<Integer, Usuario>();
 		HashMap<Integer, Monitor> monitores = new HashMap<Integer, Monitor>();
 		HashMap<Integer, Persona> personas = new HashMap<Integer, Persona>();
-
+		//LEEMEOS EL FICHERO PERSONAS PARA ACTUALIZAR LA BASE DE DATOS AL COMIENZO DE LA EJECUCION
+		OpFicheros.leerFicheroPersonas(filePersona,usuarios, monitores, personas);
 		// obtenemos las líneas del fichero de los comandos
 		lineas = OpFicheros.leerFichero(fileEjecucion, lineas);
 		for (String lineaPartir : lineas) {
 			System.out.println(lineaPartir + " *");
 
 			OpInstalacionesDeportivas.comprobarOperacion(lineaPartir, usuarios, monitores, avisos, personas);
-			OpFicheros.escribirFichero("personas.txt", usuarios, monitores);
+			OpFicheros.escribirFicheroPersonas("personas.txt", usuarios, monitores);
+			OpFicheros.escribirAvisos(fileAvisos, avisos);
 		}
 	}
 
